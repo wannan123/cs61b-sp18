@@ -41,6 +41,7 @@ class ArrayDequeTest {
         for (int i = 0; i < 16; i++) {
             dq.addLast(i);
         }
+        System.out.println(dq.get(2));
         dq.printDeque();
         for (int i = -16; i < 0; i++) {
             dq.addFirst(i);

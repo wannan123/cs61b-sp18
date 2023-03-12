@@ -89,7 +89,7 @@ public class ArrayDeque<T> {
         }
         int ptr = front;
         for (int i = 0; i < index; i++) {
-            ptr = addIndex(ptr);
+            ptr = addIndex(ptr + 1);
         }
         return items[ptr];
     }

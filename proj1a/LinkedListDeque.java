@@ -78,14 +78,16 @@ public class LinkedListDeque<Dogs>{
     }
 
     /** return the item of the list*/
-    public Dogs getItem(int index){
-        int i = 0;
-        Nodes first = sentinel.next;
-        while (i<=index){
-            first = first.next;
-            i++;
+
+    public Dogs getItem(int index) {
+        if (index >= size) {
+            return null;
         }
-        return first.item;
+        Nodes ptr = sentinel;
+        for (int i = 0; i <= index; i++) {
+            ptr = ptr.next;
+        }
+        return ptr.item;
     }
     /** print the list */
     public void printDeque(){
