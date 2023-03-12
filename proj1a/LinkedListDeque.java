@@ -39,14 +39,14 @@ public class LinkedListDeque<T>{
         }
     }
 
-    private void addLast(T x){
+    public void addLast(T x){
         Nodes newList = new Nodes(x, sentinel.pre, sentinel);
         sentinel.pre.next = newList;
         sentinel.pre = newList;
         sentinel.empty = false;
         size += 1;
     }
-    private void  addFirst(T x){
+    public void  addFirst(T x){
         Nodes newList = new Nodes(x, sentinel, sentinel.next);
         sentinel.next.pre = newList;
         sentinel.next = newList;
@@ -54,7 +54,7 @@ public class LinkedListDeque<T>{
         size += 1;
     }
 
-    private T removeFirst() {
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
@@ -68,7 +68,7 @@ public class LinkedListDeque<T>{
         return ret;
     }
 
-    private T removeLast() {
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
@@ -86,7 +86,7 @@ public class LinkedListDeque<T>{
 
     /** return the item of the list*/
 
-    private T get(int index_) {
+    public T get(int index_) {
         if (index_ >= size) {
             return null;
         }
@@ -114,7 +114,7 @@ public class LinkedListDeque<T>{
         }
     }
 
-    private T getRecursive(int index) {
+    public T getRecursive(int index) {
         if (index >= size) {
             return null;
         }
