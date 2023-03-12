@@ -86,12 +86,12 @@ public class LinkedListDeque<Dogs>{
 
     /** return the item of the list*/
 
-    public Dogs getItem(int index) {
-        if (index >= size) {
+    public Dogs getItem(int index_) {
+        if (index_ >= size) {
             return null;
         }
         Nodes ptr = sentinel;
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i <= index_; i++) {
             ptr = ptr.next;
         }
         return ptr.item;
