@@ -4,7 +4,7 @@ public class LinkedListDeque<Dogs>{
         public Nodes pre;
         public Nodes next;
         public Dogs item;
-        public boolean isempty = true;
+        public boolean empty = true;
 
         public Nodes(Dogs x,Nodes pre,Nodes next){
             Nodes.this.item = x;
@@ -25,13 +25,13 @@ public class LinkedListDeque<Dogs>{
     }
     public LinkedListDeque(Dogs x){
         sentinel = new Nodes(x,sentinel,sentinel);
-        sentinel.isempty = false;
+        sentinel.empty = false;
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
     }
     public LinkedListDeque(LinkedListDeque<Dogs> other){
         sentinel = new Nodes(null,sentinel,sentinel);
-        sentinel.isempty = false;
+        sentinel.empty = false;
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
         for (int i=0;i < other.size;i += 1){
@@ -40,13 +40,17 @@ public class LinkedListDeque<Dogs>{
     }
 
     public void addLast(Dogs x){
-        sentinel = new Nodes(x,sentinel.pre,sentinel);
-        sentinel.isempty = false;
+        Nodes newList = new Nodes(x, sentinel.pre, sentinel);
+        sentinel.pre.next = newList;
+        sentinel.pre = newList;
+        sentinel.empty = false;
         size += 1;
     }
     public void  addFirst(Dogs x){
-        sentinel = new Nodes(x,sentinel,sentinel.next);
-        sentinel.isempty = false;
+        Nodes newList = new Nodes(x, sentinel, sentinel.next);
+        sentinel.next.pre = newList;
+        sentinel.next = newList;
+        sentinel.empty = false;
         size += 1;
     }
 
@@ -58,6 +62,9 @@ public class LinkedListDeque<Dogs>{
         sentinel.next.next.pre = sentinel;
         sentinel.next = sentinel.next.next;
         size--;
+        if (size == 0){
+            sentinel.empty = true;
+        }
         return ret;
     }
 
@@ -114,7 +121,7 @@ public class LinkedListDeque<Dogs>{
         return getRecursiveHelp(sentinel.next, index);
     }
     public boolean isEmpty(){
-        return sentinel.isempty;
+        return sentinel.empty;
     }
 
 }
