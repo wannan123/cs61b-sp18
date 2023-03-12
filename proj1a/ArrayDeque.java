@@ -22,21 +22,21 @@ public class ArrayDeque<T> {
     }
 
     /** Change the index. */
-    public int decreaseIndex(int x) {
+    private int decreaseIndex(int x) {
         if (x < 0){
             return len-1;
         }
         return x;
     }
 
-    public int addIndex(int x) {
+    private int addIndex(int x) {
         if (x == len){
             return 0;
         }
         return x;
     }
     /** Change the len of array. */
-    public void grows() {
+    private void grows() {
         T[] a = (T[]) new Object[len*2];
         int ptr1 = front;
 
@@ -49,7 +49,7 @@ public class ArrayDeque<T> {
         len *= 2;
         items = a;
     }
-    public void shrink() {
+    private void shrink() {
         T[] a = (T[]) new Object[len/2];
         int ptr1 = front;
 
