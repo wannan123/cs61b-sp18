@@ -49,13 +49,27 @@ public class LinkedListDeque<Dogs>{
         sentinel.isempty = false;
         size += 1;
     }
-    public void removeFirst(){
-        Nodes first = sentinel;
-        first.next = sentinel.next.next;
-        size -= 1;
-        if(size == 0){
-            sentinel.isempty = true;
+
+    public Dogs removeFirst() {
+        if (size == 0) {
+            return null;
         }
+        Dogs ret = sentinel.next.item;
+        sentinel.next.next.pre = sentinel;
+        sentinel.next = sentinel.next.next;
+        size--;
+        return ret;
+    }
+
+    public Dogs removeLast() {
+        if (size == 0) {
+            return null;
+        }
+        Dogs ret = sentinel.pre.item;
+        sentinel.pre.pre.next = sentinel;
+        sentinel.pre = sentinel.pre.pre;
+        size--;
+        return ret;
     }
 
     /** return size of the linked list*/
