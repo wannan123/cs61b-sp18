@@ -29,6 +29,15 @@ public class LinkedListDeque<Dogs>{
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
     }
+    public LinkedListDeque(LinkedListDeque<Dogs> other){
+        sentinel = new Nodes(null,sentinel,sentinel);
+        sentinel.isempty = false;
+        sentinel.pre = sentinel;
+        sentinel.next = sentinel;
+        for (int i=0;i < other.size;i += 1){
+            addFirst(other.getItem(i));
+        }
+    }
 
     public void addLast(Dogs x){
         sentinel = new Nodes(x,sentinel.pre,sentinel);
@@ -73,6 +82,20 @@ public class LinkedListDeque<Dogs>{
             first=first.next;
             i++;
         }
+    }
+    private Dogs getRecursiveHelp(Nodes start, int index) {
+        if (index == 0) {
+            return start.item;
+        } else {
+            return getRecursiveHelp(start.next, index - 1);
+        }
+    }
+
+    public Dogs getRecursive(int index) {
+        if (index >= size) {
+            return null;
+        }
+        return getRecursiveHelp(sentinel.next, index);
     }
     public boolean isEmpty(){
         return sentinel.isempty;
