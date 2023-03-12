@@ -35,7 +35,7 @@ public class LinkedListDeque<Dogs>{
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
         for (int i=0;i < other.size;i += 1){
-            addFirst(other.getItem(i));
+            addFirst(other.get(i));
         }
     }
 
@@ -86,7 +86,7 @@ public class LinkedListDeque<Dogs>{
 
     /** return the item of the list*/
 
-    public Dogs getItem(int index_) {
+    public Dogs get(int index_) {
         if (index_ >= size) {
             return null;
         }
