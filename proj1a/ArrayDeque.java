@@ -1,5 +1,5 @@
-public class ArrayDeque<Cats> {
-    private Cats[] items;
+public class ArrayDeque<T> {
+    private T[] items;
     private int size;
     private int front;
     private int last;
@@ -7,7 +7,7 @@ public class ArrayDeque<Cats> {
 
     /** Creates an empty list. */
     public ArrayDeque() {
-        items = (Cats[]) new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         len = 8;
         front = 0;
@@ -37,7 +37,7 @@ public class ArrayDeque<Cats> {
     }
     /** Change the len of array. */
     public void grows() {
-        Cats[] a = (Cats[]) new Object[len*2];
+        T[] a = (T[]) new Object[len*2];
         int ptr1 = front;
 
         for (int i = 0;i < size;i += 1 ){
@@ -50,7 +50,7 @@ public class ArrayDeque<Cats> {
         items = a;
     }
     public void shrink() {
-        Cats[] a = (Cats[]) new Object[len/2];
+        T[] a = (T[]) new Object[len/2];
         int ptr1 = front;
 
         for (int i = 0;i < size;i += 1 ){
@@ -63,7 +63,7 @@ public class ArrayDeque<Cats> {
         items = a;
     }
     /** Inserts X into the back of the list. */
-    public void addLast(Cats x) {
+    public void addLast(T x) {
         if (size >= len){
             grows();
         }
@@ -71,7 +71,7 @@ public class ArrayDeque<Cats> {
         last = addIndex(last+1);
         size = size + 1;
     }
-    public void addFirst(Cats x) {
+    public void addFirst(T x) {
         if (size >= len){
             grows();
         }
@@ -83,12 +83,11 @@ public class ArrayDeque<Cats> {
 
 
     /** Gets the ith item in the list (0 is the front). */
-    public Cats get(int index) {
+    public T get(int index) {
         if (index >= size) {
             return null;
         }
         int ptr = front;
-        ptr = addIndex(ptr);
         for (int i = 0; i < index; i++) {
             ptr = addIndex(ptr);
         }
@@ -102,7 +101,7 @@ public class ArrayDeque<Cats> {
 
     /** Deletes item from back of the list and
      * returns deleted item. */
-    public Cats removeLast() {
+    public T removeLast() {
         if (len >= 16 && len/size >=4 ){
             shrink();
         }
@@ -113,14 +112,14 @@ public class ArrayDeque<Cats> {
         size = size - 1;
         return items[last];
     }
-    public Cats removeFirst() {
+    public T removeFirst() {
         if (len >= 16 && len/size >=4 ){
             shrink();
         }
         if (size == 0) {
             return null;
         }
-        Cats ret = items[front];
+        T ret = items[front];
         front = addIndex(front+1);
         size = size - 1;
         return ret;
