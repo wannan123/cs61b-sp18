@@ -1,12 +1,12 @@
-public class LinkedListDeque<Dogs>{
+public class LinkedListDeque<T>{
 
     public class Nodes{
-        public Nodes pre;
-        public Nodes next;
-        public Dogs item;
-        public boolean empty = true;
+        private Nodes pre;
+        private Nodes next;
+        private T item;
+        private boolean empty = true;
 
-        public Nodes(Dogs x,Nodes pre,Nodes next){
+        public Nodes(T x,Nodes pre,Nodes next){
             Nodes.this.item = x;
             Nodes.this.pre = pre;
             Nodes.this.next = next;
@@ -23,13 +23,13 @@ public class LinkedListDeque<Dogs>{
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
     }
-    public LinkedListDeque(Dogs x){
+    public LinkedListDeque(T x){
         sentinel = new Nodes(x,sentinel,sentinel);
         sentinel.empty = false;
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
     }
-    public LinkedListDeque(LinkedListDeque<Dogs> other){
+    public LinkedListDeque(LinkedListDeque<T> other){
         sentinel = new Nodes(null,sentinel,sentinel);
         sentinel.empty = false;
         sentinel.pre = sentinel;
@@ -39,14 +39,14 @@ public class LinkedListDeque<Dogs>{
         }
     }
 
-    public void addLast(Dogs x){
+    private void addLast(T x){
         Nodes newList = new Nodes(x, sentinel.pre, sentinel);
         sentinel.pre.next = newList;
         sentinel.pre = newList;
         sentinel.empty = false;
         size += 1;
     }
-    public void  addFirst(Dogs x){
+    private void  addFirst(T x){
         Nodes newList = new Nodes(x, sentinel, sentinel.next);
         sentinel.next.pre = newList;
         sentinel.next = newList;
@@ -54,11 +54,11 @@ public class LinkedListDeque<Dogs>{
         size += 1;
     }
 
-    public Dogs removeFirst() {
+    private T removeFirst() {
         if (size == 0) {
             return null;
         }
-        Dogs ret = sentinel.next.item;
+        T ret = sentinel.next.item;
         sentinel.next.next.pre = sentinel;
         sentinel.next = sentinel.next.next;
         size--;
@@ -68,11 +68,11 @@ public class LinkedListDeque<Dogs>{
         return ret;
     }
 
-    public Dogs removeLast() {
+    private T removeLast() {
         if (size == 0) {
             return null;
         }
-        Dogs ret = sentinel.pre.item;
+        T ret = sentinel.pre.item;
         sentinel.pre.pre.next = sentinel;
         sentinel.pre = sentinel.pre.pre;
         size--;
@@ -86,7 +86,7 @@ public class LinkedListDeque<Dogs>{
 
     /** return the item of the list*/
 
-    public Dogs get(int index_) {
+    private T get(int index_) {
         if (index_ >= size) {
             return null;
         }
@@ -106,7 +106,7 @@ public class LinkedListDeque<Dogs>{
             i++;
         }
     }
-    private Dogs getRecursiveHelp(Nodes start, int index) {
+    private T getRecursiveHelp(Nodes start, int index) {
         if (index == 0) {
             return start.item;
         } else {
@@ -114,14 +114,14 @@ public class LinkedListDeque<Dogs>{
         }
     }
 
-    public Dogs getRecursive(int index) {
+    private T getRecursive(int index) {
         if (index >= size) {
             return null;
         }
         return getRecursiveHelp(sentinel.next, index);
     }
     public boolean isEmpty(){
-        return sentinel.empty;
+        return size == 0;
     }
 
 }
