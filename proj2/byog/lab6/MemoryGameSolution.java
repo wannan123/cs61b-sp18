@@ -5,6 +5,7 @@ import edu.princeton.cs.introcs.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Random;
+import java.util.Scanner;
 
 public class MemoryGameSolution {
     private int width;
@@ -21,10 +22,10 @@ public class MemoryGameSolution {
     public static void main(String[] args) {
         if (args.length < 1) {
             System.out.println("Please enter a seed");
-            return;
+            //return;
         }
-
-        long seed = Long.parseLong(args[0]);
+        Scanner in = new Scanner(System.in);
+        long seed = Long.parseLong(String.valueOf(in.nextInt()));
         MemoryGameSolution game = new MemoryGameSolution(40, 40, seed);
         game.startGame();
     }
