@@ -35,4 +35,14 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("flake", cc));
         assertFalse(palindrome.isPalindrome("aba", cc));
     }
+    @Test
+    public void testWordToDeque2(){
+        LinkedListDeque d = new LinkedListDeque();
+        d.addFirst(1);
+        d.addFirst(2);
+        d.addFirst(3);
+        System.out.println((int)d.getRecursive(2));
+
+    }
+
 }
