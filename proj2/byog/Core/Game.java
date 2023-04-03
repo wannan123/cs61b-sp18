@@ -2,6 +2,7 @@ package byog.Core;
 
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
+import byog.TileEngine.Tileset;
 import edu.princeton.cs.introcs.StdDraw;
 
 import java.awt.*;
@@ -14,11 +15,8 @@ public class Game {
     public static final int HEIGHT = 30;
     private int round;
     private boolean gameOver;
+    public TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
 
-
-    /**
-     * Method used for playing a fresh game. The game should start from the main menu.
-     */
     public Game() {
         StdDraw.setCanvasSize(this.WIDTH * 16, this.HEIGHT * 16);
         Font font = new Font("Monaco", Font.BOLD, 30);
@@ -27,84 +25,36 @@ public class Game {
         StdDraw.setYscale(0, this.HEIGHT);
         StdDraw.clear(Color.BLACK);
         StdDraw.enableDoubleBuffering();
+        for (int x = 0; x < WIDTH; x += 1) {
+            for (int y = 0; y < HEIGHT; y += 1) {
+                finalWorldFrame[x][y] = Tileset.FLOWER;
+            }
+        }
     }
+    /**
+     * Method used for playing a fresh game. The game should start from the main menu.
+     */
+
     public void playWithKeyboard() {
-        startGame();
-    }
-    public void startGame() {
+        Menu menu = new Menu();
         gameOver = false;
         round = 1;
-        String seed_;
-        drawFrame("CS61B THE GAME");
+        String input = "";
+        menu.drawFrame("");
         while (!gameOver) {
             if (!StdDraw.hasNextKeyTyped()) {
                 continue;
             } else if (StdDraw.nextKeyTyped() == 'N') {
-                seed_ = solicitNCharsInput();
-                System.out.println(seed_);
+                input = menu.solicitNCharsInput();
+                System.out.println(input);
+                playWithInputString(input);
             } else if (StdDraw.nextKeyTyped() == 'Q') {
                 gameOver = true;
+            } else if (StdDraw.nextKeyTyped() == 'S') {
+                System.out.println("hahah");
+                playWithInputString(input);
             }
         }
-    }
-    public void drawFrame(String s) {
-        int midWidth = WIDTH / 2;
-        int midHeight = HEIGHT / 2;
-
-        StdDraw.clear();
-        StdDraw.clear(Color.black);
-
-        // Draw the actual text
-        Font bigFont = new Font("Monaco", Font.BOLD, 30);
-        StdDraw.setFont(bigFont);
-        StdDraw.setPenColor(Color.white);
-        StdDraw.text(midWidth, HEIGHT - (HEIGHT / 4), s);
-
-        Font smallFont = new Font("Monaco", Font.BOLD, 20);
-        StdDraw.setFont(smallFont);
-        StdDraw.setPenColor(Color.white);
-        StdDraw.text(midWidth, midHeight + 2, "New Game (N)");
-        StdDraw.text(midWidth, midHeight, "Load Game (L)");
-        StdDraw.text(midWidth, midHeight - 2, "Quit Game (Q)");
-        StdDraw.show();
-    }
-    public void drawInput(String s) {
-        int midWidth = WIDTH / 2;
-        int midHeight = HEIGHT / 2;
-
-        StdDraw.clear();
-        StdDraw.clear(Color.black);
-
-        // Draw the actual text
-        Font bigFont = new Font("Monaco", Font.BOLD, 30);
-        StdDraw.setFont(bigFont);
-        StdDraw.setPenColor(Color.white);
-        StdDraw.text(midWidth, midHeight, s);
-        StdDraw.show();
-    }
-    public String solicitNCharsInput() {
-        String input = "";
-        drawInput(input);
-        boolean is_S = false;
-        while (true) {
-            if (!StdDraw.hasNextKeyTyped()) {
-                continue;
-            }
-            else if (is_S){
-                break;
-            }
-            else {
-                char key = StdDraw.nextKeyTyped();
-                if (key == 'S'){
-                    is_S = true;
-                    continue;
-                }
-                input += String.valueOf(key);
-                drawInput(input);
-            }
-        }
-        StdDraw.pause(500);
-        return input;
     }
     /**
      * Method used for autograding and testing the game code. The input string will be a series
@@ -122,8 +72,7 @@ public class Game {
         // TODO: Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
-
-        TETile[][] finalWorldFrame = null;
+        ter.renderFrame(finalWorldFrame);
         return finalWorldFrame;
     }
 }

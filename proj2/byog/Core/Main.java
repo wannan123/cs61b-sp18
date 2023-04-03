@@ -19,7 +19,5 @@ public class Main {
             Game game = new Game();
             game.playWithKeyboard();
         }
-        Game game = new Game();
-        game.playWithKeyboard();
     }
 }
