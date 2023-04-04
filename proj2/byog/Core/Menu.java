@@ -57,7 +57,7 @@ public class Menu {
             }
         }
         is_input_ing = false;
-        StdDraw.pause(500);
+//        StdDraw.pause(500);
         return input;
     }
 }

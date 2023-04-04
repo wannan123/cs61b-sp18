@@ -13,7 +13,6 @@ public class Game {
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 30;
-    private int round;
     private boolean gameOver;
     public TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
 
@@ -38,21 +37,21 @@ public class Game {
     public void playWithKeyboard() {
         Menu menu = new Menu();
         gameOver = false;
-        round = 1;
         String input = "";
         menu.drawFrame("");
         while (!gameOver) {
             if (!StdDraw.hasNextKeyTyped()) {
                 continue;
-            } else if (StdDraw.nextKeyTyped() == 'N') {
-                input = menu.solicitNCharsInput();
-                System.out.println(input);
-                playWithInputString(input);
-            } else if (StdDraw.nextKeyTyped() == 'Q') {
-                gameOver = true;
-            } else if (StdDraw.nextKeyTyped() == 'S') {
-                System.out.println("hahah");
-                playWithInputString(input);
+            } else {
+                char c = StdDraw.nextKeyTyped();
+                if (c == 'N' || c == 'n'){
+                    input = menu.solicitNCharsInput();
+                    playWithInputString(input);
+                } else if (c == 'Q' || c == 'q') {
+                    gameOver = true;
+                } else if (c == 'L' || c == 'l') {
+                    System.out.println("ll");
+                }
             }
         }
     }
