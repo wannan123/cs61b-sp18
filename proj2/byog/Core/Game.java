@@ -14,6 +14,7 @@ public class Game {
     public static final int WIDTH = 80;
     public static final int HEIGHT = 30;
     private boolean gameOver;
+    private long seed;
     public TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
 
     public Game() {
@@ -26,7 +27,7 @@ public class Game {
         StdDraw.enableDoubleBuffering();
         for (int x = 0; x < WIDTH; x += 1) {
             for (int y = 0; y < HEIGHT; y += 1) {
-                finalWorldFrame[x][y] = Tileset.FLOWER;
+                finalWorldFrame[x][y] = Tileset.WATER;
             }
         }
     }
@@ -71,7 +72,10 @@ public class Game {
         // TODO: Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
+        seed = Long.parseLong(input.replaceAll("[^0-9]", ""));
+        World world = new World(WIDTH, HEIGHT, seed);
+        world.GenerateWorld(finalWorldFrame);
         ter.renderFrame(finalWorldFrame);
-        return finalWorldFrame;
+        return null;
     }
 }
