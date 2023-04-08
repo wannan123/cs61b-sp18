@@ -12,10 +12,10 @@ public class HallWay {
     private static final Random random = new Random();
     private static final Random random2 = new Random();
     public static int[][] hallwayGenerator(Room room1, Room room2){
-        int x_r1 = random.nextInt(room1.x + 1, room1.x + room1.width - 2);
-        int y_r1 = random.nextInt(room1.y + 1, room1.y + room1.height - 2);
-        int x_r2 = random2.nextInt(room2.x + 1, room2.x + room2.width - 2);
-        int y_r2 = random2.nextInt(room2.y + 1, room2.y + room2.height - 2);
+        int x_r1 = random.nextInt(room1.width - 2) + room1.x + 1;
+        int y_r1 = random.nextInt(room1.height - 2) + room1.y + 1;
+        int x_r2 = random2.nextInt(room2.width - 2) + room2.x + 1 ;
+        int y_r2 = random2.nextInt(room2.height - 2) + room2.y + 1;
         int [] inflection = new int[2];
         int [] vertex1 = new int[]{x_r1, y_r1};
         int [] vertex2 = new int[]{x_r2, y_r2};
