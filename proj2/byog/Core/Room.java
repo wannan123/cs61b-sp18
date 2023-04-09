@@ -60,9 +60,14 @@ public class Room {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 if ((j == 0 || j == height - 1)) {
-                    world[x + i][y + j] = Tileset.WALL;
+                    if (world[x + i][y + j] != Tileset.FLOOR){
+                        world[x + i][y + j] = Tileset.WALL;
+                    }
                 } else if (i == 0 || i == width - 1) {
-                    world[x + i][y + j] = Tileset.WALL;
+                    if (world[x + i][y + j] != Tileset.FLOOR){
+                        world[x + i][y + j] = Tileset.WALL;
+                    }
+
                 } else {
                     world[x + i][y + j] = Tileset.FLOOR;
                 }

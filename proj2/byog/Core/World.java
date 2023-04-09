@@ -10,6 +10,7 @@ public class World {
     private int Width;
     private int Height;
     private Random random = new Random();
+    private Random random2 = new Random();
     private List<Room> rooms = new LinkedList<>();
     public World (int width , int height , long seed){
         this.Width = width;
@@ -23,7 +24,7 @@ public class World {
             count ++;
             int x = random.nextInt(Width - 1);
             int y = random.nextInt(Height - 1);
-            int width = random.nextInt(6) % (6 - 3 + 1) + 6;
+            int width = random.nextInt(6) % (6 - 3 + 1) + 4;
             int height = random.nextInt(6) % (6 - 3 + 1) + 5;
             boolean is_cross_border = CheckBoundary(x, y, width, height);
             if (is_cross_border && Room.checkExist(rooms,x,y,width,height)){
@@ -79,8 +80,8 @@ public class World {
             y0 = random.nextInt(Height - 1);
         }
         while (!doorcheck(finalWorldFrame, xDoor, yDoor)) {
-            xDoor = random.nextInt(Width - 1);
-            yDoor = random.nextInt(Height - 1);
+            xDoor = random2.nextInt(Width - 1);
+            yDoor = random2.nextInt(Height - 1);
         }
 
         finalWorldFrame[x0][y0] = Tileset.PLAYER;
