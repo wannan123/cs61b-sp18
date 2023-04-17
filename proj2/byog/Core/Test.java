@@ -1,16 +1,30 @@
 package byog.Core;
 
-import java.util.Random;
+import java.util.*;
 
 public class Test {
-    public static void main(String[] args){
-        String temp = "N123S";
-        long seed = Long.parseLong(temp.replaceAll("[^0-9]", ""));
-        Random random = new Random();
-        int x = random.nextInt(2,10);
-        int y = random.nextInt(2,10);
-        System.out.println(x);
-        System.out.println(y);
+    public static void main(String args[]){
+
+        List<String> list=new ArrayList<String>();
+        list.add("abc");
+        list.add("ddd");
+        list.add("ddd");
+
+        System.out.println(">>>>>>>>>>>>去重复之前:>>>>>>>>>>>>>>");
+        for(Iterator<String> it = list.iterator(); it.hasNext(); )
+        {
+            System.out.println("value="+it.next().toString());
+        }
+
+        System.out.println(">>>>>>>>>>>>去重复之后:>>>>>>>>>>>>>>");
+        Set<String> set=new TreeSet<>();
+        set.addAll(list);
+
+        for( Iterator<String>   it = set.iterator();  it.hasNext(); )
+        {
+            System.out.println("value="+it.next().toString());
+        }
+
     }
 
 }
