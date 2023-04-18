@@ -78,11 +78,13 @@ public class TestBSTMap {
     }
 
     public static void main(String[] args) {
-        //jh61b.junit.TestRunner.runTests(TestBSTMap.class);
-        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
-        b.put("hi", 1);
-        b.put("hii", 2);
-
-
+        jh61b.junit.TestRunner.runTests(TestBSTMap.class);
+//        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
+//        b.put("hi", 1);
+//        b.put("hii", 2);
+//        b.put("hikk", 4);
+//        b.put("h", 5);
+//        b.put("h", 5);
+//        System.out.println(b.containsKey("kk"));
     }
 }

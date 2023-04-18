@@ -24,45 +24,74 @@ public class BSTMap<Key extends Comparable<Key>, Value> implements Map61B<Key, V
         root = new Node();
     }
     BSTMap(Key key, Value value){
-        root = new Node(key, value, 0);
+        root = new Node(key, value, 1);
     }
     @Override
     public void clear() {
+        root = null;
     }
 
     @Override
     public boolean containsKey(Key key) {
-        return false;
+        if (root == null) return false;
+        if (root.key == null) return false;
+        Value value = get(key);
+        return value != null;
     }
 
     @Override
     public Value get(Key key) {
-        return null;
+        if (root == null) return null;
+        if (root.key == null) return null;
+        return get(root, key);
+    }
+    private Value get(Node root, Key key){
+        if (key == null) throw new IllegalArgumentException("calls get() with a null key");
+        int x = root.key.compareTo(key);
+        if (x > 0){
+            return get(root.left, key);
+        } else if (x < 0) {
+            return get(root.right, key);
+        } else {
+            return root.val;
+        }
     }
 
     @Override
     public int size() {
-        return 0;
+        if (root == null) return 0;
+        return size(root);
+    }
+    private int size(Node node){
+        if (node == null){
+            return 0;
+        }
+        return node.size;
     }
 
     @Override
     public void put(Key key, Value value) {
+        if (root == null) throw new IllegalArgumentException("Map is not available");
         if (key == null) throw new UnsupportedOperationException("key is null");
         if (root.key == null){
-            root = new Node(key, value, 0);
+            root = new Node(key, value, 1);
+            return;
         }
         root = put(root, key, value);
     }
     private Node put(Node root, Key key, Value value){
         if (root == null){
-            return new Node(key, value, 0);
+            return new Node(key, value, 1);
         }
         int x = root.key.compareTo(key);
         if (x > 0){
             root.left = put(root.left, key, value);
         }else if (x < 0){
             root.right = put(root.right, key, value);
+        }else {
+            root.val = value;
         }
+        root.size = 1 + size(root.left) + size(root.right);
         return root;
     }
 
