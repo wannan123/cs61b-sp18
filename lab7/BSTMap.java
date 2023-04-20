@@ -47,6 +47,9 @@ public class BSTMap<Key extends Comparable<Key>, Value> implements Map61B<Key, V
     }
     private Value get(Node root, Key key){
         if (key == null) throw new IllegalArgumentException("calls get() with a null key");
+        if (root == null){
+            return null;
+        }
         int x = root.key.compareTo(key);
         if (x > 0){
             return get(root.left, key);
@@ -102,12 +105,62 @@ public class BSTMap<Key extends Comparable<Key>, Value> implements Map61B<Key, V
 
     @Override
     public Value remove(Key key) {
-        throw new UnsupportedOperationException();
+        if (root == null || root.key == null) throw new IllegalArgumentException("Map is not available");
+        if (key == null) throw new IllegalArgumentException("key is null");
+        if (!containsKey(key)) throw new IllegalArgumentException("nothing match the key");
+        Value value1 = get(key);
+        Node val = delete(root, key);
+        assert val != null;
+        return value1;
     }
 
     @Override
     public Value remove(Key key, Value value) {
-        throw new UnsupportedOperationException();
+        if (root == null || root.key == null) throw new IllegalArgumentException("Map is not available");
+        if (key == null) throw new IllegalArgumentException("key is null");
+        if (get(key) != value || !containsKey(key)) throw new IllegalArgumentException("nothing match the key");
+        Value value1 = get(key);
+        Node val = delete(root, key);
+        assert val != null;
+        return value1;
+    }
+    private Node delete(Node root, Key key){
+        int x = key.compareTo(root.key);
+        if (x < 0){
+            root.left = delete(root.left, key);
+        } else if (x > 0) {
+            root.right = delete(root.right, key);
+        } else {
+            if (root.left == null || root.right == null){
+                if (root.left != null) {
+                    root = root.left;
+                }else {
+                    root = root.right;
+                }
+            }else {
+                Node pp = root.right;
+                while (pp.left != null) pp = pp.left;
+                root.right = delete(root.right, pp.key);
+                root.key = pp.key;
+                root.val = pp.val;
+            }
+        }
+        if (root != null) {
+            root.size = 1 + size(root.left) + size(root.right);
+        }
+        return root;
+    }
+    public void print(){
+        if (root == null || root.key == null) throw new IllegalArgumentException("Map is not available");
+        print(root);
+    }
+    private void print(Node root){
+        if (root == null){
+            return;
+        }
+        print(root.left);
+        System.out.println(root.key + "(" + root.val + ")" + " ");
+        print(root.right);
     }
 
     @Override
