@@ -12,7 +12,7 @@
  *
  *  After each site is opened, it draws full sites in light blue,
  *  open sites (that aren't full) in white, and blocked sites in black,
- *  with with site (0, 0) in the upper left-hand corner.
+ *  with site (0, 0) in the upper left-hand corner.
  *
  ******************************************************************************/
 package hw2;
@@ -22,7 +22,7 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 
 public class PercolationVisualizer {
-/*
+
     // delay in miliseconds (controls animation speed)
     private static final int DELAY = 100;
 
@@ -81,7 +81,7 @@ public class PercolationVisualizer {
     }
 
     public static void main(String[] args) {
-        String filename = args[0];
+        String filename = "./inputFiles/jerry47.txt";
         simulateFromFile(filename);
-    }*/
+    }
 }
