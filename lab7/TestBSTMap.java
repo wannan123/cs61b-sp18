@@ -78,17 +78,19 @@ public class TestBSTMap {
     }
 
     public static void main(String[] args) {
-        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
-        b.put("hi", 1);
-        b.put("hii", 2);
-        b.put("hikk", 4);
-        b.put("h", 5);
-        b.put("h", 5);
+        BSTMap<Integer, Integer> b = new BSTMap<Integer, Integer>();
 
-        System.out.println(b.remove("hii"));
+        b.put(4, 4);
+        b.put(2, 2);
+        b.put(3, 3);
+        b.put(6, 6);
+        b.put(5, 5);
+        b.put(7, 7);
+        System.out.println("Medium order traversal：");
         b.print();
-        System.out.println(b.containsKey("hii"));
-        jh61b.junit.TestRunner.runTests(TestBSTMap.class);
+        System.out.println("Precedence traversal：");
+        b.print2();
+        //jh61b.junit.TestRunner.runTests(TestBSTMap.class);
 
     }
 }

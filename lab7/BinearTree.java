@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.Set;
 
-public class BSTMap<Key extends Comparable<Key>, Value> implements Map61B<Key, Value>{
+public class BinearTree<Key extends Comparable<Key>, Value> implements Map61B<Key, Value>{
 
     private Node root;
     private class Node {
@@ -20,10 +20,10 @@ public class BSTMap<Key extends Comparable<Key>, Value> implements Map61B<Key, V
 
         }
     }
-    BSTMap(){
+    BinearTree(){
         root = new Node();
     }
-    BSTMap(Key key, Value value){
+    BinearTree(Key key, Value value){
         root = new Node(key, value, 1);
     }
     @Override
@@ -97,6 +97,42 @@ public class BSTMap<Key extends Comparable<Key>, Value> implements Map61B<Key, V
         root.size = 1 + size(root.left) + size(root.right);
         return root;
     }
+    public void putLeft(Key key, Value value){
+        if (root == null) throw new IllegalArgumentException("Map is not available");
+        if (key == null) throw new UnsupportedOperationException("key is null");
+
+        if (root.key == null){
+            root = new Node(key, value, 1);
+            return;
+        }
+        root = putLeft(root, key, value);
+    }
+    private Node putLeft(Node root, Key key, Value value){
+        if (root == null){
+            return new Node(key, value, 1);
+        }
+        root.left = put(root.left, key, value);
+        root.size = 1 + size(root.left) + size(root.right);
+        return root;
+    }
+    public void putRight(Key key, Value value){
+        if (root == null) throw new IllegalArgumentException("Map is not available");
+        if (key == null) throw new UnsupportedOperationException("key is null");
+        if (root.key == null){
+            root = new Node(key, value, 1);
+            return;
+        }
+        root = putRight(root, key, value);
+    }
+    private Node putRight(Node root, Key key, Value value){
+        if (root == null){
+            return new Node(key, value, 1);
+        }
+        root.right = put(root.right, key, value);
+        root.size = 1 + size(root.left) + size(root.right);
+        return root;
+    }
+
 
     @Override
     public Set<Key> keySet() {
