@@ -13,8 +13,9 @@ public class ComplexOomage implements Oomage {
     public int hashCode() {
         int total = 0;
         for (int x : params) {
-            total = total * 256;
-            total = total + x;
+            total = total * 256 + x;
+            // because if the total bigger than power(256,3) the total is always 0;
+//            total = total + x;
         }
         return total;
     }
