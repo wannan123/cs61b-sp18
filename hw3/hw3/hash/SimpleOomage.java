@@ -36,7 +36,7 @@ public class SimpleOomage implements Oomage {
             int r = red / 5;
             int g = green / 5;
             int b = blue / 5;
-            int hc = 256 * 256 * r + 256 * g + b;
+            int hc = 53 * 53 * r + 53 * g + b;
             return hc;
         }
     }
