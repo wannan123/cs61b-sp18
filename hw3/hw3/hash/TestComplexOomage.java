@@ -41,7 +41,6 @@ public class TestComplexOomage {
         List<Oomage> deadlyList = new ArrayList<>();
 
         // Your code here.
-
         for (int i = 0; i < 30; i++) {
             List<Integer> p = new ArrayList<>();
             for (int j = 0; j < i; j++) {
