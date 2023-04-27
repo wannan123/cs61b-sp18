@@ -19,7 +19,7 @@ public class OomageTestUtility {
             count[bucketNum] += 1;
         }
         for (double i : count){
-            if (i < ((double) oomages.size() / 50) && (oomages.size() / 2.5) < i){
+            if (i < ((double) oomages.size() / 50) || (oomages.size() / 2.5) < i){
                 return false;
             }
         }
