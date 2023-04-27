@@ -10,7 +10,7 @@ public class SimpleOomage implements Oomage {
     protected int blue;
 
     private static final double WIDTH = 0.01;
-    private static final boolean USE_PERFECT_HASH = false;
+    private static final boolean USE_PERFECT_HASH = true;
 
     @Override
     public boolean equals(Object o) {
@@ -33,7 +33,11 @@ public class SimpleOomage implements Oomage {
             return red + green + blue;
         } else {
             // TODO: Write a perfect hash function for Simple Oomages.
-            return 0;
+            int r = red / 5;
+            int g = green / 5;
+            int b = blue / 5;
+            int hc = 31 * 31 * r + 31 * g + b;
+            return hc;
         }
     }
 
