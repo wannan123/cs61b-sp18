@@ -141,6 +141,10 @@ public class TestMyHashMap {
     }
 
     public static void main(String[] args) {
+        MyHashMap<String, String> dictionary = new MyHashMap<>();
+        dictionary.put("wce","good");
+        dictionary.put("wce2","good2");
+        System.out.println(dictionary.get("wce"));
         jh61b.junit.TestRunner.runTests(TestMyHashMap.class);
     }
 }
